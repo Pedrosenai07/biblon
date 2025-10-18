@@ -1,0 +1,877 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+/* --- VARIÁVEIS DE COR (Baseadas na Paleta da Imagem) --- */
+:root {
+    /* Cores do Tema ESCURO (Padrão) */
+    --color-primary: #340E1B;     /* Vinho Escuro (Fundo de Seções) */
+    --color-secondary: #671D2F;   /* Vinho Vibrante (CTA Principal Hover) */
+    --color-tertiary: #3A252A;    /* Marrom Escuro (Fundo Principal) */
+    --color-dark-accent: #423634; /* Marrom (Fundo de Cards) */
+    --color-light-accent: #D9D9D9;/* Cinza Claro (Destaque/Texto Secundário) */
+    --color-text-light: #F0F0F0;  /* Quase Branco (Texto Principal) */
+    --color-highlight-button: #78021F; /* Vermelho/Bordô (Navbar/CTA) */
+
+    /* Cores do Tema ACESSÍVEL (Claro/Contraste Alto) */
+    --acessible-primary: #F0F0F0;   /* Fundo Principal Claro */
+    --acessible-secondary: #FFFFFF; /* Fundo de Cards Claro */
+    --acessible-text: #000000;      /* Texto Preto Puro (Padrão para leitura) */
+    --acessible-highlight:#78021F; /* Azul de Destaque */
+    --acessible-contrast-dark: #340E1B;  /* Vinho Escuro (Para Navbar/Fundos de Alto Contraste) */
+
+    --logo-font: 'Mitr', sans-serif;
+    --body-font: 'Mitr', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--body-font);
+    color: var(--color-text-light);
+    background-color: var(--color-tertiary);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFF;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =======================================================
+    1. NAVBAR 
+    ======================================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: var(--color-highlight-button);
+}
+
+.navbar-logo img {
+    height: 35px;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    margin-left: 30px;
+}
+
+.navbar-links a {
+    color: var(--color-text-light);
+    font-size: 1em;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.navbar-links a:hover {
+    opacity: 1;
+    color: var(--color-light-accent);
+}
+
+/* Botão de Tema */
+.theme-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: var(--color-text-light); 
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.theme-toggle-button:hover {
+    color: var(--color-light-accent);
+}
+
+
+/* =======================================================
+    2. HERO SECTION
+    ======================================================= */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 120px 80px 40px 80px;
+    min-height: calc(100vh - 65px);
+    background-color: var(--color-primary);
+}
+
+.hero-content {
+    flex: 1 1 45%;
+    max-width: 500px;
+}
+
+.hero-image-container {
+    flex: 1 1 55%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hero-image-container img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    transform: translateX(5%);
+}
+
+.subtitle {
+    font-size: 1.1em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: var(--color-light-accent);
+    opacity: 0.7;
+}
+
+.title {
+    font-family: var(--logo-font);
+    font-size: 3.5em;
+    line-height: 1.1;
+    margin: 0 0 25px 0;
+    font-weight: 700;
+    color: var(--color-text-light);
+}
+
+.hero-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 450px;
+    font-weight: 300;
+}
+
+.hero-button-container {
+    border: none;
+    background: none;
+}
+
+.hero-button {
+    display: inline-block;
+    background-color: #78021F;
+    color: var(--color-text-light);
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+}
+
+.hero-button:hover {
+    background-color: #8B1F31;
+}
+
+/* =======================================================
+    3. SEÇÃO VÍDEO (AJUSTADO PARA THUMBNAIL CLICÁVEL)
+    ======================================================= */
+.video-section {
+    background-color: #3A252A;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.txttext {
+    padding: 10px;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--color-light-accent);
+}
+
+.video-placeholder-wrapper {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    /* Usa o padding para forçar a proporção 16:9 */
+    padding-bottom: 50.625%; /* 900px * 9 / 16 (para 16:9 exato) */
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    /* Borda elegante que incorpora com a estrutura */
+    border: solid 5px var(--color-highlight-button); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.video-placeholder-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s;
+}
+
+.video-placeholder-wrapper:hover img {
+    filter: brightness(0.7); /* Escurece um pouco ao passar o mouse */
+}
+
+/* Ícone de Play Centralizado */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(120, 2, 31, 0.8); /* Cor do tema com transparência */
+    color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    border: 3px solid white;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 10;
+}
+
+.video-placeholder-wrapper:hover .play-button {
+    background-color: rgba(120, 2, 31, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Estilo para o iframe injetado pelo JS */
+.video-placeholder-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* =======================================================
+    4. CARDS DE FUNCIONALIDADES (O BIBLON RESOLVE)
+    ======================================================= */
+.beneficios {
+    background-color: var(--color-dark-accent);
+    padding: 60px 0;
+}
+
+.tittlearea,
+.section-title {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.cardsinformations {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.cards-grid {
+    display: grid;
+    gap: 30px;
+    text-align: center;
+}
+
+.three-cols {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+    background-color: #340E1B;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-funcionalidade {
+    text-align: center;
+}
+
+.card-funcionalidade h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #FFF;
+    margin-bottom: 10px;
+}
+
+.card-funcionalidade p {
+    font-size: 0.95em;
+    font-weight: 300;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+}
+
+.icon-circle i {
+    font-size: 1.2em;
+    color: var(--color-text-light);
+}
+
+/* =======================================================
+    5. CARDS DE BENEFÍCIOS (INOVAÇÃO)
+    ======================================================= */
+#beneficios-inovacao {
+    background-color: var(--color-primary);
+    padding: 60px 0;
+}
+
+.cards-inovacao {
+    padding: 20px;
+    text-align: center;
+}
+
+.benefit-card {
+    background-color: #78021F;
+    color: var(--color-text-light);
+    transition: transform 0.3s;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-card i {
+    font-size: 2.5em;
+    color: var(--color-light-accent);
+    margin-bottom: 15px;
+}
+
+.benefit-card h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--color-light-accent);
+    margin-bottom: 10px;
+}
+
+/* =======================================================
+    6. PLANOS E PREÇOS (ALTURA UNIFORME)
+    ======================================================= */
+.section {
+    padding: 80px 0;
+}
+
+/* CSS PARA O BADGE "MAIS POPULAR" */
+.plan-card.popular {
+    position: relative; 
+}
+
+.popular-badge {
+    position: absolute;
+    top: 0; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    
+    background-color: #340E1B; 
+    color: #fff; 
+    font-size: 0.75em;
+    font-weight: 700;
+    padding: 5px 15px;
+    border-radius: 9999px; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+/* Container do Grid */
+.pricing-table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+    align-items: stretch; /* CHAVE GRID */
+}
+
+/* Card Individual (Flex Container para Altura Uniforme) */
+.plan-card {
+    background-color:#340E1B;
+    padding: 40px 30px;
+    border-radius: 8px;
+    border: 3px solid var(--color-dark-accent);
+    
+    display: flex;
+    flex-direction: column; /* CHAVE FLEX 1 */
+    height: 100%; 
+    box-sizing: border-box;
+}
+
+.plan-card.popular {
+    background-color: #78021F;
+    border-color: var(--color-light-accent);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(103, 29, 47, 0.7);
+    margin-bottom: 40px; 
+}
+
+.plan-card h3 {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: var(--color-light-accent);
+}
+
+.price {
+    font-size: 3em;
+    font-weight: 700;
+    color: #fff;
+    margin: 10px 0 5px 0;
+}
+
+.price span {
+    font-size: 0.4em;
+    font-weight: 300;
+}
+
+.plan-card .subtitle {
+    color: var(--color-light-accent);
+    margin-bottom: 25px;
+    font-weight: 300;
+    min-height: 40px; 
+}
+
+/* Lista de Recursos (Ocupa o Espaço Restante) */
+.plan-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+    text-align: left;
+    
+    flex-grow: 1; /* CHAVE FLEX 2 */
+    min-height: 180px; 
+}
+
+.plan-card ul li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    color: var(--color-text-light);
+}
+
+.plan-card ul li i {
+    margin-right: 10px;
+    color: #4CAF50;
+}
+
+.plan-card ul li.disabled {
+    color: #999;
+}
+
+.plan-card ul li.disabled i {
+    color: #FF5252;
+}
+
+/* Botões CTA (Alinhados na Base) */
+.cta-primary,
+.cta-secondary {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    
+    margin-top: auto; /* CHAVE FLEX 3 */
+}
+
+.cta-primary {
+    background-color: #340E1B;
+    color: var(--color-text-light);
+    border: 2px solid #fff;
+}
+
+.cta-primary:hover {
+    background-color: #fff;
+    color: #340E1B;
+}
+
+.cta-secondary {
+    background-color: transparent;
+    color: var(--color-light-accent);
+    border: 2px solid var(--color-light-accent);
+}
+
+.cta-secondary:hover {
+    background-color: var(--color-light-accent);
+    color: var(--color-tertiary);
+}
+
+/* =======================================================
+    7. RODAPÉ (FOOTER)
+    ======================================================= */
+#footer {
+    background-color: var(--color-primary);
+    padding: 40px 0 20px 0;
+    border-top: 5px solid var(--color-secondary);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.footer-logo img {
+    width: 200px;
+}
+
+.footer-content h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.footer-contact p,
+.footer-nav a,
+.footer-team-area li {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+/* Área da Equipe */
+.footer-team-area ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-team-area li {
+    font-weight: 300;
+}
+
+
+.footer-social a {
+    font-size: 1.5em;
+    margin-right: 15px;
+    color: var(--color-light-accent);
+}
+
+.footer-social a:hover {
+    color: var(--color-secondary);
+}
+
+.footer-legal {
+    text-align: center;
+    font-size: 0.8em;
+    color: white;
+}
+
+.footer-legal a {
+    color: var(--color-light-accent);
+}
+
+/* =======================================================
+    8. ANIMAÇÕES E DESTAQUE
+   ======================================================= */
+
+/* Estilo para o link da Navbar Ativo */
+.navbar-links a.active {
+    opacity: 1;
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-light-accent); 
+}
+
+/* Efeito de Fade-In ao rolar a página */
+.to-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ANIMAÇÃO EXTRA PARA O PLANO MAIS POPULAR */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.plan-card.popular.animate-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+
+/* =======================================================
+    9. TEMA DE ACESSIBILIDADE (ALTO CONTRASTE)
+   ======================================================= */
+
+html[data-theme='accessible'] {
+    background-color: var(--acessible-primary); 
+    color: var(--acessible-text);
+}
+
+html[data-theme='accessible'] body {
+    background-color: var(--acessible-primary); /* Fundo claro para o corpo principal */
+    color: var(--acessible-text);
+}
+
+/* Navbar e Rodapé em Cor Escura de Alto Contraste */
+html[data-theme='accessible'] .navbar,
+html[data-theme='accessible'] #footer {
+    background-color: var(--acessible-contrast-dark); 
+}
+
+html[data-theme='accessible'] .navbar a,
+html[data-theme='accessible'] .theme-toggle-button,
+html[data-theme='accessible'] #footer h4,
+html[data-theme='accessible'] .footer-contact p {
+    color: var(--color-text-light); /* Texto claro no navbar e info de contato do footer */
+}
+
+/* FUNDOS DE SEÇÕES: Mantendo a separação visual original */
+html[data-theme='accessible'] .hero-section {
+    background-color: var(--acessible-primary); /* Fundo Claro */
+}
+html[data-theme='accessible'] .video-section,
+html[data-theme='accessible'] .beneficios {
+    background-color: var(--acessible-contrast-dark) !important; /* Fundo Escuro para Vídeo e Funcionalidades */
+}
+html[data-theme='accessible'] #beneficios-inovacao {
+    background-color: var(--acessible-contrast-dark) !important; /* Fundo Escuro para Inovação */
+}
+html[data-theme='accessible'] #planos {
+    background-color: var(--acessible-primary) !important; /* Fundo Claro para Planos */
+}
+
+
+/* ITENS EM BRANCO (Fundo Escuro) - Solicitação do Usuário */
+html[data-theme='accessible'] .txttext, /* NOSSO PROJETO */
+html[data-theme='accessible'] .tittlearea, /* O BIBLON RESOLVE */
+html[data-theme='accessible'] #beneficios-inovacao .section-title, /* Transforme sua Biblioteca... */
+html[data-theme='accessible'] .footer-team-area,
+html[data-theme='accessible'] .footer-team-area li {
+    color: #FFFFFF !important; 
+}
+
+/* TÍTULO DA SEÇÃO PLANOS EM PRETO (Fundo Claro) - Solicitação do Usuário */
+html[data-theme='accessible'] #planos .section-title {
+    color: var(--acessible-text) !important;
+}
+
+/* COR DO TEXTO GERAL NO HERO SECTION (Fundo Claro) */
+html[data-theme='accessible'] .hero-content p,
+html[data-theme='accessible'] .subtitle,
+html[data-theme='accessible'] .title {
+    color: var(--acessible-text) !important;
+}
+
+
+/* Cards de Funcionalidades e Benefícios (AGORA COM FUNDO ESCURO e TEXTO CLARO) */
+html[data-theme='accessible'] .card,
+html[data-theme='accessible'] .benefit-card {
+    background-color: var(--acessible-contrast-dark) !important; /* Fundo do card em Vinho Escuro */
+    border: 1px solid var(--color-text-light);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='accessible'] .card h3,
+html[data-theme='accessible'] .card p,
+html[data-theme='accessible'] .benefit-card h3,
+html[data-theme='accessible'] .benefit-card p {
+    color: var(--color-text-light) !important; /* Texto do card em Branco/Claro */
+}
+
+
+html[data-theme='accessible'] .icon-circle {
+    background-color: var(--acessible-highlight) !important;
+}
+
+html[data-theme='accessible'] .icon-circle i {
+    color: var(--acessible-secondary) !important;
+}
+
+/* PLANOS: MANTENDO TEXTO PRETO (Fundo Claro) */
+html[data-theme='accessible'] .plan-card {
+    background-color: var(--acessible-secondary); /* Fundo do Card Claro */
+    border: 3px solid var(--acessible-text);
+}
+
+html[data-theme='accessible'] .plan-card.popular {
+    background-color: var(--acessible-primary);
+    border-color: var(--acessible-highlight);
+}
+
+html[data-theme='accessible'] .price,
+html[data-theme='accessible'] .price span,
+html[data-theme='accessible'] .plan-card h3,
+html[data-theme='accessible'] .plan-card .subtitle,
+html[data-theme='accessible'] .plan-card ul li {
+    color: var(--acessible-text) !important; /* Texto do plano em Preto */
+}
+
+html[data-theme='accessible'] .popular-badge {
+    background-color: var(--acessible-highlight);
+    color: white;
+}
+
+/* CTAs (Mantém alto contraste) */
+html[data-theme='accessible'] .cta-primary,
+html[data-theme='accessible'] .cta-secondary,
+html[data-theme='accessible'] .hero-button {
+    background-color: var(--acessible-highlight) !important;
+    color: white !important;
+    border: 2px solid var(--acessible-highlight) !important;
+}
+
+html[data-theme='accessible'] .cta-primary:hover,
+html[data-theme='accessible'] .cta-secondary:hover,
+html[data-theme='accessible'] .hero-button:hover {
+    background-color: var(--acessible-contrast-dark) !important;
+    border-color: var(--acessible-contrast-dark) !important;
+}
+
+/* =======================================================
+    10. MEDIA QUERIES PARA RESPONSIVIDADE
+   ======================================================= */
+
+/* Telas Médias (Tablets) - Max-width: 992px */
+@media (max-width: 992px) {
+    /* HERO SECTION */
+    .hero-section {
+        flex-direction: column;
+        padding: 80px 40px 40px 40px;
+        min-height: auto;
+        text-align: center;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .hero-content p {
+        max-width: none;
+    }
+
+    .hero-image-container img {
+        max-width: 450px;
+        transform: none; 
+    }
+
+    /* CARDS DE FUNCIONALIDADES E BENEFÍCIOS */
+    .three-cols {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    /* PLANOS E PREÇOS */
+    .pricing-table {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    
+    /* RODAPÉ */
+    .footer-content {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 30px;
+    }
+    
+    .footer-content > div {
+        flex: 1 1 40%; 
+        min-width: 200px; 
+    }
+}
+
+/* Telas Pequenas (Celulares) - Max-width: 576px */
+@media (max-width: 576px) {
+    
+    /* NAVBAR */
+    .navbar {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+    
+    .navbar-links {
+        margin-top: 15px;
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+    
+    .navbar-links li {
+        margin: 5px 10px;
+    }
+
+    /* HERO SECTION */
+    .title {
+        font-size: 2.5em;
+    }
+
+    /* SEÇÕES E TÍTULOS */
+    .tittlearea,
+    .section-title {
+        font-size: 1.8em;
+    }
+    
+    /* CARDS DE FUNCIONALIDADES E BENEFÍCIOS */
+    .three-cols {
+        grid-template-columns: 1fr; 
+    }
+
+    /* PLANOS E PREÇOS */
+    .pricing-table {
+        grid-template-columns: 1fr; 
+    }
+    
+    .plan-card.popular {
+        transform: scale(1); 
+    }
+
+    /* FOOTER */
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-content > div {
+        margin-bottom: 20px;
+    }
+    
+    .footer-team-area ul {
+        display: flex; 
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
